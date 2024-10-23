@@ -5,16 +5,17 @@ import json
 import datetime
 
 
+import secrets
+
 # Connexion à Splunk
 service = client.connect(
-    host='localhost',
-    port='8089',
-    scheme='https',
-    username='do_not_use_admin',
-    password='insert_mdp_here'
+    host="172.10.80.95",
+    port=8089,
+    scheme="https",
+    **secrets.SPLUNK
 )
 # Requête de recherche Splunk
-search_query = 'search index="alerts" event_title="*"'
+search_query = 'search index="test"'
 # Envoi de la requête de recherche à Splunk
 search_results = service.jobs.oneshot(search_query, output_mode='json')
 # Récupération des résultats de la recherche au format JSON
